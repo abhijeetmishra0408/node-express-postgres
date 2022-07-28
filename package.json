@@ -19,6 +19,7 @@
   "homepage": "https://github.com/abhijeetmishra0408/node-express-postgres#readme",
   "dependencies": {
     "express": "^4.18.1",
+    "nodemon": "^2.0.19",
     "pg": "^8.7.3"
   }
 }
