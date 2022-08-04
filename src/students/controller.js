@@ -52,32 +52,25 @@ const removeStudent = (req, res) => {
 
 
 const editStudent = (req, res) => {
-    // const id = parseInt(req.params.id);
-    // console.log(req.body)
-    // const req_body = req.body;
-    // q = ''
-    // if (req_body.email.length) {
-    //     pool.query(queries.checkEmailExist, [req_body.email], (error, results) => {
-    //         if (error) {
-    //             throw error;
-    //         }
-    //     });
-    //     if (req_body.name) q = 'name = ' + "'" + req_body.name + "'";
-    //     if (req_body.email.length) q = q + ',email = ' + "'" + req_body.email + "'";
-    //     if (toString(req_body.age).length) q = q + ', age = ' + req_body.age;
-    //     if (req_body.dob.length) q = q + ', dob=' + "'" + req_body.dob + "'";
-    //     if (q.length) {
+    const id = parseInt(req.params.id);
+    const req_body = req.body;
+    var email = null;
+    var name = null;
+    var age = null;
+    var db = null;
+    if (req_body.email) email = req_body.email;
+    if (req_body.name) name = req_body.name;
+    if (req_body.age) age = req_body.age;
+    if (req_body.dob) dob = req_body.dob;
 
-    //         pool.query(queries.editStudents, [q, id], (error, results) => {
-    //             console.log('=======' + queries.editStudents + q)
-    //             if (error) {
-    //                 throw error;
-    //             } else {
-    //                 res.status(200).send('students details updated');
-    //             }
-    //         });
-    //     }
-    // }
+    pool.query(queries.editStudents, [id, name, email, age, dob], (error, results) => {
+        if (error) {
+            throw error;
+        } else {
+            res.status(200).send({ message: 'student details updated', data: results.rows });
+        }
+    });
+
 }
 
 
