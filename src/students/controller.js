@@ -70,9 +70,14 @@ const editStudent = (req, res) => {
             res.status(200).send({ message: 'student details updated', data: results.rows });
         }
     });
-
 }
 
+const searchStudent = (req, res) => {
+    const searchText = req.query.name;
+    pool.query(queries.searchStudent, ['%' + searchText + '%'], (error, results) => {
+        res.status(200).json(results.rows);
+    });
+}
 
 module.exports = {
     getStudents,
@@ -80,4 +85,5 @@ module.exports = {
     addStudents,
     removeStudent,
     editStudent,
+    searchStudent,
 };
