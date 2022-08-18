@@ -39,12 +39,12 @@ const removeStudent = (req, res) => {
     pool.query(queries.removeStudent, [id], (error, results) => {
         const noStudentFound = !results.rows.length;
         if (noStudentFound) {
-            res.status(400).send('No student found');
+            return res.send('No student found');
         }
         if (error) {
-            throw error;
+            return res.status(400).send(error);
         } else {
-            res.status(200).send('Student removed success.');
+            return res.status(200).send('Student removed success.');
         }
 
     });
@@ -78,6 +78,9 @@ const searchStudent = (req, res) => {
         res.status(200).json(results.rows);
     });
 }
+
+
+
 
 module.exports = {
     getStudents,
