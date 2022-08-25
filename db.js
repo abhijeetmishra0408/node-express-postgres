@@ -4,7 +4,7 @@ require('dotenv').config();
 const db_url = process.env.DATABASE_URL
 
 if (db_url) {
-    const pool = new Client({
+    const pool = new Pool({
         connectionString: db_url,
         ssl: {
             rejectUnauthorized: false
@@ -19,7 +19,5 @@ if (db_url) {
         database: process.env.database
     })
 }
-
-
 
 module.exports = pool;
